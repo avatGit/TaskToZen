@@ -10,7 +10,7 @@ const taskSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: false,
+      allownull: true,
     },
     priority: {
       type: String,
@@ -24,11 +24,7 @@ const taskSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    user: {
-      type: mongoose.Schema.type.ObjectId,
-      ref: "User", // References the USer model
-      required: true,
-    },
+
     // ---- Duration of the task -----
     startDate: {
       type: Date,
@@ -49,6 +45,14 @@ const taskSchema = new mongoose.Schema(
       },
     },
     //----------------------------------
+    created_by: {
+      type: DataTypes.UUID,
+      allownull: false,
+    },
+    updated_by: {
+      type: DataTypes.UUID,
+      allownull: true,
+    },
   },
   { timeStamps: true },
 );
