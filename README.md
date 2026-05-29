@@ -1,6 +1,6 @@
 # TaskToZen 🧠
 
-[![Translate to French](https://shields.io)](https://github.com/avatGit/TaskToZen)
+[![Translate to English](https://img.shields.io/badge/Translate-to%20English-blue?style=flat-square&logo=googlechrome)](https://translate.google.com/translate?sl=fr&tl=en&u=https%3A%2F%2Fgithub.com%2FavatGit%2FTaskToZen%2Fblob%2Fmain%2FREADME.md)
 
 TaskToZen est une application web de gestion intelligente des tâches conçue pour aider les étudiants, développeurs et personnes multiprojets à garder le cap sur leurs objectifs sans se sentir dépassés.
 
