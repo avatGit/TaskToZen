@@ -1,0 +1,217 @@
+/* ============================================================
+   Register.css
+   Design inspiré de la maquette : fond dégradé beige/doré,
+   carte centrale gris foncé arrondie, champs en "pilules"
+   claires, bouton principal doré.
+   ============================================================ */
+
+/* Reset léger pour la page */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+/* ---------- Fond + sidebar (logo flottant en haut à gauche) ---------- */
+.register-page {
+  position: fixed;
+  inset: 0;
+  /* Dégradé doré/beige comme sur la maquette */
+  background: linear-gradient(135deg, #b8a884 0%, #d4c19a 45%, #8a7d63 100%);
+  z-index: -1;
+}
+
+.register-sidebar {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2b2b2b;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  background-color: #f7f4ef;
+  padding: 5px;
+  border-left: 10px solid #4a4844;
+  border-right: 10px solid #4a4844;
+  border-radius: 16px;
+}
+
+/* ---------- Conteneur principal : centre la carte ---------- */
+.register-main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #b8a884 0%, #d4c19a 45%, #8a7d63 100%);
+}
+
+.register-content {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* ---------- Carte d'inscription ---------- */
+.register-card {
+  background: #4a4844; /* gris foncé chaleureux */
+  border-radius: 28px;
+  padding: 48px 56px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+
+.card-header {
+  display: none; /* la maquette n'affiche pas "Inscription" séparément */
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 0 0 36px 0;
+  color: #fff;
+}
+
+/* ---------- Champs ---------- */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  color: #f0ede8;
+  padding-left: 4px;
+}
+
+.form-input {
+  width: 100%;
+  height: 44px;
+  border: none;
+  outline: none;
+  border-radius: 999px; /* pilule */
+  background: #e5e3df;
+  padding: 0 20px;
+  font-size: 1rem;
+  color: #2b2b2b;
+  transition:
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-input:focus {
+  background: #f3f1ed;
+  box-shadow: 0 0 0 2px #d4b97a;
+}
+
+.input-error {
+  box-shadow: 0 0 0 2px #d97a7a;
+}
+
+.form-error {
+  color: #ffb3b3;
+  font-size: 0.8rem;
+  padding-left: 16px;
+}
+
+/* ---------- Bouton principal ---------- */
+.btn-submit {
+  margin-top: 14px;
+  height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: #d4b97a; /* doré */
+  color: #1a1a1a;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #e0c688;
+  transform: translateY(-1px);
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Spinner pendant chargement */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top-color: #1a1a1a;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Lien de connexion ---------- */
+.login-link {
+  text-align: center;
+  margin: 18px 0 0 0;
+  font-size: 0.9rem;
+  color: #e8e5df;
+}
+
+.login-link a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .register-card {
+    padding: 32px 24px;
+    border-radius: 22px;
+  }
+
+  .form-title {
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+  }
+
+  .register-sidebar {
+    top: 16px;
+    left: 20px;
+  }
+}
