@@ -11,7 +11,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/task", taskRoute);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to TaskPilot API");
+  res.send("Welcome to TaskToZen API");
 });
 
 module.exports = app;
