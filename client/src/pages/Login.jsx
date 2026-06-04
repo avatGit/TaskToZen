@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+//import api from "../services/api";
 import "./Login.css";
-
-const api = axios.create();
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -14,6 +12,7 @@ function LoginPage() {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -31,7 +30,7 @@ function LoginPage() {
   };
 
   const validateForm = async () => {
-    const newErrors = {};
+    let newErrors = {};
 
     if (!formData.email.trim()) {
       newErrors.email = "L'email est requis";
@@ -54,18 +53,18 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
-      const response = await api.post("/auth/login", formData);
+      /* const response = await api.post("/auth/login", formData);
       const { token, user, refreshToken } = response.data.data;
 
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user)); */
       navigate("/dashboard");
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
       setErrors((prev) => ({
         ...prev,
         submit:
-          error.response?.data?.message || "Email ou mot de passe incorrect",
+          error.response?.data?.message || "Email ou mot de passse incorrect",
       }));
     } finally {
       setIsLoading(false);

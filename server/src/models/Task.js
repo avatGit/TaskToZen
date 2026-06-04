@@ -46,11 +46,13 @@ const taskSchema = new mongoose.Schema(
     },
     //----------------------------------
     created_by: {
-      type: DataTypes.UUID,
+      type: mongoose.Schema.Types.UUID,
+      ref: "User",
       allownull: false,
     },
     updated_by: {
-      type: DataTypes.UUID,
+      type: mongoose.Schema.Types.UUID,
+      ref: "User",
       allownull: true,
     },
   },

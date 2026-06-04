@@ -3,15 +3,18 @@ const User = require("../models/User");
 
 exports.authenticate = async (req, res) => {
   try {
-    const authHeader = req.headers.authorization;
+    /* const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startWith("Bearer")) {
       return res
         .status(401)
         .json({ message: "Token manquant. Veuillez vous connecter" });
-    }
+    } */
 
-    const token = authHeader.subString(7);
+    const token = req.cookie.token;
+    if (!token) {
+      return res.status(401).json({ message: "Token Manquant" });
+    }
 
     let decoded;
     try {
@@ -36,8 +39,7 @@ exports.authenticate = async (req, res) => {
         .json({ message: "Utilisateur non trouve. Veuillez vous connecter" });
     }
 
-    req.user = user;
-    req.userId = user._id;
+    req.user = decoded;
   } catch (err) {
     console.error("Erreur d'authentification: ", err);
     res
