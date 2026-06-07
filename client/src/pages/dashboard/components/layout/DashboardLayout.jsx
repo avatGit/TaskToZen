@@ -1,14 +1,20 @@
-import { Children } from "react";
+import { useState } from "react";
 import SideBar from "./Sidebar";
 import Header from "./Header";
 import "./DashboardLayout.css";
 
 export default function DashboardLayout({ children }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <>
       <div className="dashboard-shell">
-        <aside className="dashboard-sidebar">
-          <SideBar />
+        <aside
+          className={`dashboard-sidebar ${isCollapsed ? "collapsed" : ""}`}
+        >
+          <SideBar
+            isCollapsed={isCollapsed}
+            toggleCollapse={() => setIsCollapsed(!isCollapsed)}
+          />
         </aside>
 
         <div className="content-wrapper">

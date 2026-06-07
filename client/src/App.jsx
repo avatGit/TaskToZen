@@ -11,7 +11,7 @@ import Settings from "./pages/Settings";
 import Stats from "./pages/Stats";
 import Calendar from "./pages/Calendar";
 import Projects from "./pages/Projects";
-
+import UserProfile from "./pages/UserProfile";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -27,7 +27,8 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/stats" element={<Stats />} />
-        <Route path="/settings" element={<Settings />} />
+
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );
