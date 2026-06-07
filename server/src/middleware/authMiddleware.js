@@ -1,17 +1,9 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-exports.authenticate = async (req, res) => {
+exports.authenticate = async (req, res, next) => {
   try {
-    /* const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startWith("Bearer")) {
-      return res
-        .status(401)
-        .json({ message: "Token manquant. Veuillez vous connecter" });
-    } */
-
-    const token = req.cookie.token;
+    const token = req.cookies.token;
     if (!token) {
       return res.status(401).json({ message: "Token Manquant" });
     }
@@ -32,7 +24,7 @@ exports.authenticate = async (req, res) => {
       throw err;
     }
 
-    const user = await User.findById(decoded._id).select("-password");
+    const user = await User.findById(decoded.user._id).select("-password");
     if (!user) {
       return res
         .status(401)
@@ -40,6 +32,7 @@ exports.authenticate = async (req, res) => {
     }
 
     req.user = decoded;
+    next();
   } catch (err) {
     console.error("Erreur d'authentification: ", err);
     res

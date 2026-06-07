@@ -1,0 +1,43 @@
+/* Le conteneur principal prend tout l'écran */
+.dashboard-shell {
+  display: flex;
+  height: 100vh; /* 100% de la hauteur de la fenêtre */
+  width: 100vw;
+  overflow: hidden; /* Empêche le scroll sur le body */
+}
+
+/* La Sidebar a une largeur fixe */
+.dashboard-sidebar {
+  width: 260px;
+  background-color: #3b3a36; /* Couleur sombre de ton design */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* La zone de droite prend tout l'espace restant */
+.content-wrapper {
+  flex: 1; /* Prend l'espace restant */
+  display: flex;
+  flex-direction: column; /* Organise le Header et le Contenu en colonne */
+  background-color: #e8e4d9; /* Couleur beige claire de ton design */
+  overflow: hidden;
+}
+
+/* Le Header a une hauteur fixe ou auto */
+.dashboard-header {
+  height: 70px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0; /* Empêche le header de rétrécir */
+  /* background-color: #e8e4d9; */ /* Même couleur que le fond */
+}
+
+/* Le contenu principal est la seule zone qui scroll */
+.dashboard-main-content {
+  flex: 1; /* Prend tout l'espace restant sous le header */
+  overflow-y: auto; /* C'est ICI que le scroll se fait ! */
+  padding: 2rem;
+}

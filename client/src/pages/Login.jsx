@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 //import api from "../services/api";
 import "./Login.css";
 
@@ -13,6 +13,7 @@ function LoginPage() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [succesMessage, setSuccesMessage] = useState("");
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -53,11 +54,9 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
-      /* const response = await api.post("/auth/login", formData);
-      const { token, user, refreshToken } = response.data.data;
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user)); */
+      await api.post("/auth/login", formData);
+      setErrors({ ...errors, submit: "" });
+      setSuccesMessage("Connecté avec succes");
       navigate("/dashboard");
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
@@ -74,7 +73,9 @@ function LoginPage() {
   return (
     <>
       <div className="login-page">
-        <Link to="/" className="logo"></Link>
+        <Link to="/" className="logo">
+          TaskToZen
+        </Link>
 
         <div className="login-main">
           <div className="login-content">
@@ -129,12 +130,12 @@ function LoginPage() {
                     "Se Connecter"
                   )}
                 </button>
-                {errors.submit && (
+                {(errors.submit || succesMessage) && (
                   <div
-                    className="form-error"
+                    className={errors.submit ? "form-error" : "form-succes"}
                     style={{ textAlign: "center", marginTop: "10px" }}
                   >
-                    {errors.submit}
+                    {errors.submit || succesMessage}
                   </div>
                 )}
 

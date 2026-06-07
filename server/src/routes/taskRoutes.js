@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const taskController = require("../controllers/taskController");
-const authentificate = require("../middleware/authMiddleware");
+const { authenticate } = require("../middleware/authMiddleware");
 
-router.post("/add", authentificate, taskController.addTask);
+console.log("Middleware:", typeof authenticate);
+
+router.post("/add", authenticate, taskController.addTask);
 
 module.exports = router;
