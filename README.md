@@ -23,12 +23,6 @@ L’objectif est de construire un système capable de :
 ---
 
 ## État actuel du projet
-
-### MVP Progress
-
-- Backend → **70%**
-- Frontend → **0%**
-
 Le projet est actuellement en phase de développement MVP.
 
 ---
@@ -52,7 +46,7 @@ Le projet est actuellement en phase de développement MVP.
 ### Outils
 
 - Git
-- Docker _(prévu plus tard)_
+- Docker 
 - JWT Authentication
 
 ---
