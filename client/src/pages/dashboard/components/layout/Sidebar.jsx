@@ -2,6 +2,8 @@ import { useState } from "react";
 import {
   X,
   Menu,
+  ChevronLeft,
+  ChevronRight,
   Home,
   Calendar,
   Folder,
@@ -14,7 +16,12 @@ import {
 import { Link } from "react-router-dom";
 import "./DashboardLayout";
 
-export default function SideBar({ isCollapsed, toggleCollapse }) {
+export default function SideBar({
+  isCollapsed,
+  isMobileMenuOpen,
+  toggleMobileCollapse,
+  toggleCollapse,
+}) {
   const menuItems = [
     { icon: Home, label: "Dashboard", path: "/dashboard" },
     { icon: Calendar, label: "Aujourd'hui", path: "/today" },
@@ -30,9 +37,16 @@ export default function SideBar({ isCollapsed, toggleCollapse }) {
       <aside className="sidebar">
         <div className="sidebar-header">
           {!isCollapsed && <h2>TaskToZen</h2>}
-          <button onClick={toggleCollapse}>
-            {isCollapsed ? <Menu size={24} /> : <X size={24} />}
-          </button>
+
+          {!isMobileMenuOpen && (
+            <button onClick={toggleCollapse}>
+              {isCollapsed ? (
+                <Menu size={24} />
+              ) : (
+                <X onClick={toggleMobileCollapse} size={24} />
+              )}
+            </button>
+          )}
         </div>
 
         <div className="sidebar-profile">
@@ -61,6 +75,16 @@ export default function SideBar({ isCollapsed, toggleCollapse }) {
             {!isCollapsed && <span>Se Deconnecter</span>}
           </Link>
         </div>
+        <button
+          className={` sidebar-toggle ${!isMobileMenuOpen ? "mobile-sidebar-closed" : "mobile-sidebar-open"}`}
+          onClick={toggleMobileCollapse}
+        >
+          {isMobileMenuOpen ? (
+            <ChevronLeft size={30} />
+          ) : (
+            <ChevronRight size={20} />
+          )}
+        </button>
       </aside>
     </>
   );

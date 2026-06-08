@@ -5,21 +5,30 @@ import "./DashboardLayout.css";
 
 export default function DashboardLayout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <>
       <div className="dashboard-shell">
         <aside
-          className={`dashboard-sidebar ${isCollapsed ? "collapsed" : ""}`}
+          className={`dashboard-sidebar ${isCollapsed ? "collapsed" : ""} ${isMobileMenuOpen ? "mobile-open" : ""}`}
         >
           <SideBar
             isCollapsed={isCollapsed}
+            isMobileMenuOpen={isMobileMenuOpen}
+            toggleMobileCollapse={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             toggleCollapse={() => setIsCollapsed(!isCollapsed)}
           />
         </aside>
 
         <div className="content-wrapper">
           <header className="dashboard-header">
-            <Header />
+            <Header
+              isCollapsed={isCollapsed}
+              isMobileMenuOpen={isMobileMenuOpen}
+              toggleMobileCollapse={() =>
+                setIsMobileMenuOpen(!isMobileMenuOpen)
+              }
+            />
           </header>
 
           <div className="dashboard-main-content">{children}</div>
