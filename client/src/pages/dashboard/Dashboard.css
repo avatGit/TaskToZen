@@ -1,0 +1,14 @@
+.dashboard-container {
+}
+
+.dashboard-welcome h1 span {
+  font-style: oblique;
+}
+.dashboard-welcome h3,
+p {
+  color: aliceblue;
+}
+.dashboard-welcome p {
+  margin-top: -15px;
+  font-style: italic;
+}

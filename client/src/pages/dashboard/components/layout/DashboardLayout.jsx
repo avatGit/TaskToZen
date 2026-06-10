@@ -1,11 +1,14 @@
 import { useState } from "react";
 import SideBar from "./Sidebar";
 import Header from "./Header";
+import Dashboard from "../../Dashboard";
 import "./DashboardLayout.css";
+import { useAuth } from "../../../../hooks/useAuth";
 
 export default function DashboardLayout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <>
       <div className="dashboard-shell">
@@ -31,7 +34,10 @@ export default function DashboardLayout({ children }) {
             />
           </header>
 
-          <div className="dashboard-main-content">{children}</div>
+          <div className="dashboard-main-content">
+            {/* {children} */}
+            <Dashboard />
+          </div>
         </div>
       </div>
     </>
