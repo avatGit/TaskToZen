@@ -175,7 +175,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #e8e4d9;
+  background: linear-gradient(to bottom, #d9cdb7, #81776d);
   overflow: hidden;
 }
 
@@ -187,7 +187,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #beb69e;
+  background-color: rgba(196, 179, 148, 0.5);
   flex-shrink: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
