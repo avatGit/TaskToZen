@@ -14,7 +14,7 @@
 
 .dashboard-sidebar {
   width: 260px;
-  background-color: #3b3a36;
+  background-color: #2d2924;
   color: #ffffff;
   flex-shrink: 0;
   display: flex;
@@ -175,7 +175,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #e8e4d9;
+  background: linear-gradient(to bottom, #d9cdb7, #81776d);
   overflow: hidden;
 }
 
@@ -184,9 +184,10 @@
   height: 70px;
   padding: 0 2rem;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #e8e4d9;
+  background-color: rgba(196, 179, 148, 0.5);
   flex-shrink: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -197,19 +198,23 @@
   color: #2c2b28;
   margin: 0;
 }
-
+.dashboard-header h1 span:nth-child(2) {
+  color: #907043;
+}
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 5rem;
 }
 
 .header-button {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: #f9f6f0;
   color: #2c2b28;
   transition: background-color 0.2s;
   display: flex;
@@ -223,6 +228,8 @@
 
 .notification-badge {
   position: relative;
+  background-color: transparent;
+  border: none;
 }
 
 .notification-badge .badge {
@@ -233,8 +240,8 @@
   color: white;
   font-size: 0.7rem;
   font-weight: 600;
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -287,6 +294,21 @@
   }
   .dashboard-header {
     z-index: 500;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .header-button {
+    width: 30px;
+    padding: 2px;
+    border-radius: 50%;
+    border: 2px solid rgb(141, 105, 82);
+  }
+  .header-button span {
+    display: none;
   }
 
   .sidebar-header h2,

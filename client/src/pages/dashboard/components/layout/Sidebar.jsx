@@ -38,15 +38,13 @@ export default function SideBar({
         <div className="sidebar-header">
           {!isCollapsed && <h2>TaskToZen</h2>}
 
-          {!isMobileMenuOpen && (
-            <button onClick={toggleCollapse}>
-              {isCollapsed ? (
-                <Menu size={24} />
-              ) : (
-                <X onClick={toggleMobileCollapse} size={24} />
-              )}
-            </button>
-          )}
+          <button onClick={toggleCollapse}>
+            {isCollapsed ? (
+              <Menu size={24} />
+            ) : (
+              <X onClick={toggleMobileCollapse} size={24} />
+            )}
+          </button>
         </div>
 
         <div className="sidebar-profile">
