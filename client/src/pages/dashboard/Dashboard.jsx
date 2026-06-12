@@ -37,7 +37,6 @@ export default function Dashboard() {
 
       <section className="dashboard-body">
         <div className="dashboard-left-column">
-          <h2>Priority task</h2>
           <PriorityTask />
           <h2>Upcoming dead line</h2>
           <UpComingDeadLine />

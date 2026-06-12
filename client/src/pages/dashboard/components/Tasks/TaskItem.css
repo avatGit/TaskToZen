@@ -1,0 +1,31 @@
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  padding-right: 20px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.task-left-part {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.task-item p {
+  color: black;
+}
+.task-left-part p:nth-child(3) {
+  /* background-color: rgba(143, 142, 142, 0.641); */
+  background-color: #c1c3c592;
+  color: #3d4552;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 3px 7px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  display: inline-block;
+}
+.task-item .task-duration {
+  color: #3d4552;
+}
