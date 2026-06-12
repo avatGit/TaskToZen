@@ -2,6 +2,7 @@ import { useState } from "react";
 import SideBar from "./Sidebar";
 import Header from "./Header";
 import "./DashboardLayout.css";
+import Dashboard from "../../Dashboard";
 
 export default function DashboardLayout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -31,7 +32,9 @@ export default function DashboardLayout({ children }) {
             />
           </header>
 
-          <div className="dashboard-main-content">{children}</div>
+          <div className="dashboard-main-content">
+            <Dashboard />
+          </div>
         </div>
       </div>
     </>

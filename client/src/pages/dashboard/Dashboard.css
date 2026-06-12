@@ -1,4 +1,7 @@
 .dashboard-container {
+  padding: 15px;
+  padding-right: 10px;
+  width: 100%;
 }
 
 .dashboard-welcome h1 span {
@@ -11,4 +14,34 @@ p {
 .dashboard-welcome p {
   margin-top: -15px;
   font-style: italic;
+}
+
+/* Stats */
+.stats-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+
+  gap: 2rem;
+}
+
+.dashboard-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.dashboard-left-column,
+.dashboard-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .stats-grid-container {
+    /* Changes back to all 4 items in a single straight row on big screens */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
