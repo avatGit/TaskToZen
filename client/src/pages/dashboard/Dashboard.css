@@ -2,27 +2,44 @@
 .roboto-text {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   font-variation-settings: "wdth" 100;
+  font-size: 0.9rem;
 }
 
 .dashboard-container {
   padding: 15px;
   padding-right: 10px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
+.dashboard-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dashboard-welcome .welcome-second-part {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
 .dashboard-welcome h1 span {
   font-style: oblique;
 }
 .dashboard-welcome h3,
 p {
-  color: aliceblue;
+  color: #3e3e3e;
+}
+.dashboard-welcome h3 {
+  margin: 0;
 }
 .dashboard-welcome p {
-  margin-top: -15px;
   font-style: italic;
+  margin-top: 0;
 }
 
 /* Stats */
@@ -31,7 +48,6 @@ p {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
-
   gap: 2rem;
 }
 
@@ -52,12 +68,16 @@ p {
 /* Priotity Tasks */
 .task-priority-container {
   background-color: #e4cfaf;
-  padding: 15px;
+  padding: 16px;
   border: 1px solid rgb(160, 156, 156);
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+}
+.tasks {
+  border: 1px solid gray;
+  border-radius: 10px;
 }
 .view-all-btn {
   align-self: center;
@@ -78,21 +98,22 @@ p {
 
 /* Recent Activity */
 .recent-activity-container {
-  height: 340px;
+  min-height: 320px;
   background-color: #e4cfaf;
-  padding: 15px;
+  padding: 16px 20px;
   border: 1px solid rgb(160, 156, 156);
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .activity-item {
+  padding: 4px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: -1px;
 }
 
 .activity-left-part {
@@ -106,20 +127,117 @@ p {
 .label-description {
   display: flex;
   flex-direction: column;
-  margin-bottom: -5px;
+  gap: 2px;
 }
 .label-description p:nth-child(1) {
   color: black;
+  margin: 0;
 }
 
 .activity-desc {
   color: #3e4550d8; /* Soft gray for the description text */
-  font-size: 0.72rem;
-  margin-top: -12px;
+  font-size: 0.9rem;
+  margin: 0;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .task-duration {
   color: #363c45d2;
+}
+
+/* UpComing Dead Line */
+.deadline-container {
+  min-height: 340px;
+  background-color: #e4cfaf;
+  padding: 1px 15px 20px 15px;
+  border: 1px solid rgb(160, 156, 156);
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+.deadline-items {
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.deadline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid gray;
+  margin: 0;
+}
+.deadline-item:last-child {
+  border-bottom: none;
+}
+.deadline-left-part {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.deadline-left-part p {
+  color: black;
+}
+.deadline-category {
+  background-color: #c1c3c592;
+  color: #3d4552;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 3px 7px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.deadline-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.deadline-date p {
+  margin: 0;
+}
+.deadline-date p:nth-child(1) {
+  font-size: 1.48rem;
+  font-weight: 900;
+}
+
+.deadline-right-part {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.until-deadline {
+  color: #363c45d2;
+  font-weight: 540;
+}
+
+.priority-high {
+  color: rgb(227, 89, 89);
+  border: 2px solid rgb(227, 89, 89);
+}
+.priority-medium {
+  border: 1px solid rgb(192, 135, 3);
+  background-color: rgb(243, 216, 166);
+  color: rgba(0, 0, 0, 0.677);
+}
+.priority-low {
+  border: 1px solid rgb(115, 246, 100);
+  background-color: rgb(162, 243, 159);
+  color: rgba(0, 0, 0, 0.677);
+}
+.priority-default {
+  color: black;
+  border: 1px solid black;
+}
+.priority-type {
+  padding: 1px;
+  border-radius: 3px;
+  font-size: small;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
@@ -127,5 +245,9 @@ p {
     /* Changes back to all 4 items in a single straight row on big screens */
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+  }
+  .dashboard-body {
+    display: flex;
+    flex-direction: column;
   }
 }

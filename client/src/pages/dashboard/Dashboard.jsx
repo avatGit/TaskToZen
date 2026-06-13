@@ -27,8 +27,10 @@ export default function Dashboard() {
           Bonjour<span> {userName}</span>, pret a accomplir tes objectifs
           Aujourd'hui ?
         </h1>
-        <h3 style={{ textTransform: "capitalize" }}>{formatedDate}</h3>
-        <p>Tu as 3 taches prioritaires pour aujourd'hui</p>
+        <div className="welcome-second-part">
+          <h3 style={{ textTransform: "capitalize" }}>{formatedDate}</h3>
+          <p>Tu as 3 taches prioritaires pour aujourd'hui</p>
+        </div>
       </section>
 
       <section className="dashboard-stats-section">
@@ -38,7 +40,6 @@ export default function Dashboard() {
       <section className="dashboard-body">
         <div className="dashboard-left-column">
           <PriorityTask />
-          <h2>Upcoming dead line</h2>
           <UpComingDeadLine />
         </div>
         <div className="dashboard-right-column">

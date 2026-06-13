@@ -23,7 +23,7 @@ export default function PriorityTask() {
   ];
   return (
     <div className="task-priority-container">
-      <h2>Mes 3 Priorites du Jour</h2>
+      <h2 style={{ marginTop: "0" }}>Mes 3 Priorites du Jour</h2>
       <div className="tasks">
         {tasks.map((item) => {
           return (
