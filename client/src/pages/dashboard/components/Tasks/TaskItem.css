@@ -1,4 +1,5 @@
 .task-item {
+  height: 4rem;
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -15,6 +16,9 @@
 .task-item p {
   color: black;
 }
+.task-left-part p:nth-child(2) {
+  font-weight: bold;
+}
 .task-left-part p:nth-child(3) {
   /* background-color: rgba(143, 142, 142, 0.641); */
   background-color: #c1c3c592;
@@ -27,5 +31,5 @@
   display: inline-block;
 }
 .task-item .task-duration {
-  color: #3d4552;
+  color: #363c45d2;
 }

@@ -42,7 +42,6 @@ export default function Dashboard() {
           <UpComingDeadLine />
         </div>
         <div className="dashboard-right-column">
-          <h2>Recent Activity</h2>
           <RecentActivity />
           <h2>Time Distribution</h2>
           <TimeDistribution />
