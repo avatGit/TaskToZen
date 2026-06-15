@@ -67,6 +67,7 @@ p {
 
 /* Priotity Tasks */
 .task-priority-container {
+  min-height: 315px;
   background-color: #e4cfaf;
   padding: 16px;
   border: 1px solid rgb(160, 156, 156);
@@ -93,12 +94,12 @@ p {
   transition: all 0.4s ease;
 }
 .view-all-btn:hover {
-  background-color: #a18c6a;
+  background-color: rgba(60, 47, 25, 0.09);
 }
 
 /* Recent Activity */
 .recent-activity-container {
-  min-height: 320px;
+  min-height: 315px;
   background-color: #e4cfaf;
   padding: 16px 20px;
   border: 1px solid rgb(160, 156, 156);
@@ -146,7 +147,7 @@ p {
 
 /* UpComing Dead Line */
 .deadline-container {
-  min-height: 340px;
+  min-height: 280px;
   background-color: #e4cfaf;
   padding: 1px 15px 20px 15px;
   border: 1px solid rgb(160, 156, 156);
@@ -160,13 +161,14 @@ p {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  margin: 0;
 }
 .deadline-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 15px;
+  padding: 5px 15px;
   border-bottom: 1px solid gray;
   margin: 0;
 }
@@ -238,6 +240,93 @@ p {
   border-radius: 3px;
   font-size: small;
   font-weight: 600;
+}
+
+/* Time Distribution */
+.time-distribution-container {
+  min-height: 280px;
+  background-color: #e4cfaf;
+  padding: 20px 30px;
+  border: 1px solid rgb(160, 156, 156);
+  border-radius: 24px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.time-distribution-container .widget-body {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  width: 100%;
+  margin: 0;
+}
+.chart {
+  padding: 0;
+}
+.time-distribution-container .categories {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  flex-grow: 1;
+  min-width: 180px;
+}
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.category-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot-red {
+  background-color: #ea4335;
+}
+.dot-orange {
+  background-color: #fbbc05;
+}
+.dot-green {
+  background-color: #34a853;
+}
+.dot-gray {
+  background-color: #9aa0a6;
+}
+
+.category-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.category-right {
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  gap: 4px;
+}
+.category-hours {
+  color: #2b261f;
+}
+
+.category-percentage {
+  color: #5c5549;
+}
+.widget-footer {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {

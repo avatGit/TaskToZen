@@ -13,7 +13,7 @@ import {
   LogOut,
   User,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./DashboardLayout";
 
 export default function SideBar({
@@ -23,7 +23,7 @@ export default function SideBar({
   toggleCollapse,
 }) {
   const menuItems = [
-    { icon: Home, label: "Dashboard", path: "/dashboard" },
+    { icon: Home, label: "Dashboard", path: "/" },
     { icon: Calendar, label: "Aujourd'hui", path: "/today" },
     { icon: Folder, label: "Projets", path: "/projects" },
     { icon: CheckSquare, label: "Taches", path: "/tasks" },
@@ -58,10 +58,10 @@ export default function SideBar({
 
         <nav className="sidebar-nav">
           {menuItems.map((item) => (
-            <Link key={item.path} to={item.path} className="nav-item">
+            <NavLink key={item.path} to={item.path} className="nav-item">
               <item.icon size={24} />
               {!isCollapsed && <span>{item.label}</span>}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 

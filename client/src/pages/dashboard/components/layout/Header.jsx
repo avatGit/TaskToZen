@@ -12,7 +12,7 @@ export default function Header({ isMobileMenuOpen, toggleMobileCollapse }) {
 
       <div className="header-actions">
         <button className="header-button">
-          <Plus size={20} strokeWidth={2.5} />
+          <Plus size={15} strokeWidth={2.5} />
           <span>Nouvelle Tache</span>
         </button>
         <button className="notification-badge">

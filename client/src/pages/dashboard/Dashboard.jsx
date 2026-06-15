@@ -44,7 +44,6 @@ export default function Dashboard() {
         </div>
         <div className="dashboard-right-column">
           <RecentActivity />
-          <h2>Time Distribution</h2>
           <TimeDistribution />
         </div>
       </section>
