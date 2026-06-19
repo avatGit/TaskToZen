@@ -38,7 +38,7 @@ export default function SideBar({
         <div className="sidebar-header">
           {!isCollapsed && <h2>TaskToZen</h2>}
 
-          <button onClick={toggleCollapse}>
+          <button onClick={toggleCollapse} className="sidebar-toggle-btn">
             {isCollapsed ? (
               <Menu size={24} />
             ) : (

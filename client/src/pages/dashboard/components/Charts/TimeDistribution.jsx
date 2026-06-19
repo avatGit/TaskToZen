@@ -26,7 +26,6 @@ export default function TimeDistribution() {
               cy="50%"
               innerRadius={"70%"}
               outerRadius={"100%"}
-              s
               dataKey="value"
               /* label={(entry) => entry.name} */
               stroke="none"
@@ -38,18 +37,12 @@ export default function TimeDistribution() {
                 />
               ))}
             </Pie>
-            <text
-              x="50%"
-              y="53%"
-              textAnchor="middle"
-              fontSize={20}
-              fontWeight={600}
-              fill="black"
-            >
-              {`${totalHours}h`}
-            </text>
+           
             <Tooltip />
           </PieChart>
+           <div className="chart-center-text">
+    <span>{totalHours}h</span>
+  </div>
         </div>
         <div className="categories">
           {data.map((item) => (
