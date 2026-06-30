@@ -1,8 +1,8 @@
 import { useState } from "react";
 import SideBar from "./Sidebar";
-import Header from "./Header";
 import "./DashboardLayout.css";
 import Dashboard from "../../Dashboard";
+import { Outlet } from "react-router";
 
 export default function DashboardLayout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -10,19 +10,16 @@ export default function DashboardLayout({ children }) {
   return (
     <>
       <div className="dashboard-shell">
-        <aside
+        <SideBar
           className={`dashboard-sidebar ${isCollapsed ? "collapsed" : ""} ${isMobileMenuOpen ? "mobile-open" : ""}`}
-        >
-          <SideBar
-            isCollapsed={isCollapsed}
-            isMobileMenuOpen={isMobileMenuOpen}
-            toggleMobileCollapse={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            toggleCollapse={() => setIsCollapsed(!isCollapsed)}
-          />
-        </aside>
+          isCollapsed={isCollapsed}
+          isMobileMenuOpen={isMobileMenuOpen}
+          toggleMobileCollapse={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          toggleCollapse={() => setIsCollapsed(!isCollapsed)}
+        />
 
         <div className="content-wrapper">
-          <header className="dashboard-header">
+          {/* <header className="dashboard-header">
             <Header
               isCollapsed={isCollapsed}
               isMobileMenuOpen={isMobileMenuOpen}
@@ -30,10 +27,10 @@ export default function DashboardLayout({ children }) {
                 setIsMobileMenuOpen(!isMobileMenuOpen)
               }
             />
-          </header>
+          </header> */}
 
           <div className="dashboard-main-content">
-            <Dashboard />
+            <Outlet />
           </div>
         </div>
       </div>

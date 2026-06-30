@@ -24,7 +24,17 @@ export function AuthProvider({ children }) {
   // Send credentials to backend to login and receive the session cooktie
   const login = async (email, password) => {
     const response = await api.post("/auth/login", { email, password });
-    setUser(response.data.user);
+    //setUser(response.data.user);
+    try{
+      const userReponse = await api.get('auth/me')
+      setUser(userReponse.data.user);
+      /* console.log("success AuthContext")
+    console.log("Réponse API Login :", response.data); */
+    }catch(err){
+      console.error("Impossible de recuperer le profil apres le login",err)
+      setUser(null)
+      throw err;
+    }
     return response.data;
   };
 

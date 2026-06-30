@@ -5,7 +5,7 @@
 /* ----- LAYOUT PRINCIPAL ----- */
 .dashboard-shell {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
 }
@@ -14,6 +14,9 @@
 
 .dashboard-sidebar {
   width: clamp(80px, 20vw, 260px);
+  height: 100vh;
+  position: sticky;
+  top: 0;
   background-color: #2d2924;
   color: #ffffff;
   flex-shrink: 0;
@@ -174,88 +177,18 @@
 /* ----- CONTENT WRAPPER ----- */
 .content-wrapper {
   flex: 1;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #dac9a8, #937e69);
+  background: linear-gradient(to bottom, #e8dac0, #b9a28a);
   overflow: hidden;
-}
-
-/* ----- DASHBOARD HEADER ----- */
-.dashboard-header {
-  height: clamp(50px, 8vh, 70px);
-  padding: 0 clamp(1rem, 3vw, 3rem);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgba(196, 179, 148, 0.5);
-  flex-shrink: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.dashboard-header h1 {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
-  font-weight: 700;
-  color: #2c2b28;
-  margin: 0;
-}
-.dashboard-header h1 span:nth-child(2) {
-  color: #907043;
-}
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: clamp(1rem, 4vw, 4rem);
-}
-
-.header-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 50px;
-  border: none;
-  background-color: #faf3e5;
-  color: #2c2b28;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-button:hover {
-  background-color: rgba(101, 77, 43, 0.516);
-  color: white;
-}
-
-.notification-badge {
-  position: relative;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.notification-badge .badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #e74c3c;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 600;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* ----- MAIN CONTENT AREA ----- */
 .dashboard-main-content {
   flex: 1;
   overflow-y: auto;
-  padding: clamp(1rem, 3vh, 2rem);
+  width: 100%;
 }
 
 .dashboard-main-content::-webkit-scrollbar {
@@ -275,19 +208,19 @@
 .dashboard-main-content::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
- /* RESPONSIVE DESIGN (Tablet: 1024px) */
+/* RESPONSIVE DESIGN (Tablet: 1024px) */
 @media (max-width: 1024px) {
   .dashboard-sidebar:not(.mobile-open) {
-    width: 80px ; 
+    width: 80px;
   }
-  
+
   .sidebar-header h2,
   .sidebar-profile span,
   .nav-item span {
     opacity: 0;
     width: 0;
   }
-  .sidebar-header .sidebar-toggle-btn{
+  .sidebar-header .sidebar-toggle-btn {
     display: none;
   }
 }
@@ -305,7 +238,7 @@
     width: clamp(260px, 70vw, 280px);
   }
 
-  .sidebar-header .sidebar-toggle-btn{
+  .sidebar-header .sidebar-toggle-btn {
     display: none;
   }
 
@@ -316,7 +249,7 @@
   .dashboard-sidebar.collapsed {
     width: clamp(260px, 70vw, 280px);
   }
-  
+
   .dashboard-header {
     padding: 0 clamp(0.75rem, 2vw, 1rem);
     z-index: 500;
@@ -327,7 +260,7 @@
     align-items: center;
     gap: clamp(0.5rem, 2vw, 1rem);
   }
-  
+
   .header-button {
     width: 32px;
     height: 32px;
@@ -336,7 +269,7 @@
     border: 2px solid rgb(141, 105, 82);
     flex-shrink: 0;
   }
-  
+
   .header-button span {
     display: none;
   }
@@ -347,7 +280,7 @@
     opacity: 1;
     width: auto;
   }
-  
+
   .mobile-sidebar-open {
     position: absolute;
     right: -10px;
@@ -358,7 +291,7 @@
     border: none;
     display: block;
   }
-  
+
   .mobile-sidebar-closed {
     position: absolute;
     right: -15px;
@@ -382,15 +315,15 @@
   .dashboard-header h1 {
     font-size: clamp(1rem, 3vw, 1.2rem);
   }
-  
+
   .sidebar-header {
     height: clamp(50px, 7vh, 60px);
   }
-  
+
   .dashboard-main-content {
     padding: clamp(0.75rem, 2vh, 1rem);
   }
-  
+
   .notification-badge .badge {
     font-size: 0.6rem;
     width: 12px;

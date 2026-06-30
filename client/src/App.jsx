@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { Navigate } from "react-router";
 import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
@@ -8,20 +9,22 @@ import { useAuth } from "./hooks/useAuth";
 import DashboardLayout from "./pages/dashboard/components/layout/DashboardLayout";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Today from "./pages/Today";
-import Tasks from "./pages/Tasks";
+import Tasks from "./pages/tasks/Tasks";
 import Settings from "./pages/Settings";
 import Stats from "./pages/Stats";
 import Calendar from "./pages/Calendar";
 import Projects from "./pages/Projects";
 import UserProfile from "./pages/UserProfile";
 
-const ProtectedRoute = () => {
+const ProtectedLayout = () => {
   const { user, loading } = useAuth();
+  console.log("ProtectedLayout - user:", user, "loading:", loading);
   if (loading) {
-    return <div>Loading your session...</div>;
+    return <div>Chargement de votre session...</div>;
   }
+  if(!user) return <Navigate to="/login" replace/>
 
-  return user ? <Outlet /> : <Navigate to="/login" replace />;
+  return <DashboardLayout/>
 };
 
 function App() {
@@ -31,22 +34,22 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DashboardLayout />} />
-          {/* Authentification Pages */}
+          {/*  Public Routes */}
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-
+         
           {/* Protected Routes, Require a valid Cookie */}
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedLayout />}>
+            <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/today" element={<Today />} />
             <Route path="/tasks" element={<Tasks />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/profile" element={<UserProfile />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/stats" element={<Stats />} />
+            <Route path="/settings" element={<Settings/>}/>
           </Route>
-
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/stats" element={<Stats />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

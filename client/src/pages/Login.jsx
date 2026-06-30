@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
-//import api from "../services/api";
+import api from "../services/api";
 import "./Login.css";
+import Dashboard from "./dashboard/Dashboard";
+import { useAuth } from "../hooks/useAuth";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [succesMessage, setSuccesMessage] = useState("");
+  const {login} = useAuth()
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -54,10 +57,12 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
-      await api.post("/auth/login", formData);
+      await login(formData.email, formData.password);
       setErrors({ ...errors, submit: "" });
       setSuccesMessage("Connecté avec succes");
+      console.log('Authentifier login.jsx');
       navigate("/dashboard");
+      console.log("rediriger vers:",location.pathname)
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
       setErrors((prev) => ({

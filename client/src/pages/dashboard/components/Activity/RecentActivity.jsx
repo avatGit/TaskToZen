@@ -39,7 +39,7 @@ export default function RecentActivity() {
       <div>
         {activity.map((item) => {
           return (
-            <div className="activity-item" key={item.label}>
+            <div className="activity-item" key={item.type}>
               <div className="activity-left-part">
                 {renderIcon(item.type)}
                 <div className="label-description">

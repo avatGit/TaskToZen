@@ -9,13 +9,93 @@
 }
 
 .dashboard-container {
-  padding: clamp(0.75rem, 2vh, 1.5rem);
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.6rem, 1.4vh, 1rem);
+}
+
+/* ----- DASHBOARD HEADER ----- */
+.dashboard-header {
+  height: clamp(50px, 8vh, 70px);
+  padding: 0 clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(196, 179, 148, 0.5);
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-header h1 {
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-weight: 700;
+  color: #2c2b28;
+  margin: 0;
+}
+.dashboard-header h1 span:nth-child(2) {
+  color: #907043;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 4rem);
+}
+
+.header-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 50px;
+  border: none;
+  background-color: #faf3e5;
+  color: #2c2b28;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-button:hover {
+  background-color: rgba(101, 77, 43, 0.516);
+  color: white;
+}
+
+.notification-badge {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.notification-badge .badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* DASHBOARD main BODY */
+.dashboard-body-content {
+  padding: 3rem;
+  /* padding: clamp(0.5rem, 3vh, 4rem); */
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: clamp(0.75rem, 2vh, 1.25rem);
 }
-
 .dashboard-welcome {
   display: flex;
   flex-direction: column;
@@ -45,7 +125,10 @@ p {
 .stats-grid-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 20vw, 250px), 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(150px, 20vw, 250px), 1fr)
+  );
   grid-template-rows: auto;
   gap: clamp(1rem, 2vh, 2rem);
 }
@@ -69,7 +152,7 @@ p {
   min-height: auto;
   background-color: #e4cfaf;
   padding: clamp(1rem, 2vh, 1.5rem);
-  border: 1px solid rgb(160, 156, 156);
+  border: none;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -101,7 +184,7 @@ p {
   min-height: 315px;
   background-color: #e4cfaf;
   padding: 16px 20px;
-  border: 1px solid rgb(160, 156, 156);
+  border: none;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -150,7 +233,7 @@ p {
   min-height: 280px;
   background-color: #e4cfaf;
   padding: 1px 15px 20px 15px;
-  border: 1px solid rgb(160, 156, 156);
+  border: none;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -252,7 +335,7 @@ p {
   min-height: 280px;
   background-color: #e4cfaf;
   padding: 20px 30px;
-  border: 1px solid rgb(160, 156, 156);
+  border: none;
   border-radius: 24px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 
@@ -355,28 +438,31 @@ p {
   .dashboard-body {
     grid-template-columns: 1fr;
   }
-  
+
   .time-distribution-container .widget-body {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .time-distribution-container .categories {
     min-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
+  .dashboard-body-content {
+    padding: 1rem;
+  }
   .stats-grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .dashboard-body {
     display: flex;
     flex-direction: column;
     grid-template-columns: auto;
   }
-  
+
   .dashboard-left-column,
   .dashboard-right-column {
     width: 100%;
@@ -387,20 +473,20 @@ p {
   .stats-grid-container {
     grid-template-columns: 1fr;
   }
-  
+
   .dashboard-container {
     padding: clamp(0.5rem, 1.5vh, 1rem);
     gap: clamp(0.5rem, 1.5vh, 1rem);
   }
-  
+
   .dashboard-welcome h1 {
     font-size: clamp(1rem, 3vw, 1.3rem);
   }
-  
+
   .time-distribution-container {
     padding: clamp(0.75rem, 1.5vh, 1rem) clamp(0.75rem, 2vw, 1.5rem);
   }
-  
+
   .deadline-date p:nth-child(1) {
     font-size: clamp(1rem, 2.5vw, 1.3rem);
   }

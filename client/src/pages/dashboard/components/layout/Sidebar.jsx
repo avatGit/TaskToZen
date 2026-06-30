@@ -17,6 +17,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./DashboardLayout";
 
 export default function SideBar({
+  className,
   isCollapsed,
   isMobileMenuOpen,
   toggleMobileCollapse,
@@ -34,7 +35,7 @@ export default function SideBar({
 
   return (
     <>
-      <aside className="sidebar">
+      <aside className={className}>
         <div className="sidebar-header">
           {!isCollapsed && <h2>TaskToZen</h2>}
 
