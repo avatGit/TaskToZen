@@ -1,0 +1,37 @@
+.filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-button {
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  background-color: #fffcf4;
+  border: 1px solid rgb(164, 163, 163);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.drop-items {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  z-index: 10;
+  min-width: 12rem;
+  background-color: #fffcf4;
+  border: 1px solid rgb(164, 163, 163);
+  border-radius: 7px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+}
+
+.drop-option {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.drop-option:hover {
+  background-color: rgba(44, 43, 40, 0.08);
+}

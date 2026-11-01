@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import ViewModeToggle from "../ModeToggle/ViewModeToggle";
 import NotificationBell from "../../../../components/NotificationBell";
 import UserAvatar from "./UserAvatar";
+import "./TaskHeader.css";
 
 export default function TaskHeader({
   currentMode,

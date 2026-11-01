@@ -1,0 +1,87 @@
+.priority-reminder {
+  display: none;
+}
+
+.reminder-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.reminder-content h2 {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: #3d2c22;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reminder-alert-icon {
+  flex: 0 0 auto;
+  color: rgb(227, 89, 89);
+}
+
+.reminder-close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  min-height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .priority-reminder {
+    display: flex;
+    flex: 0 1 190px;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    max-width: 190px;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid rgba(112, 79, 45, 0.16);
+    border-radius: 60px;
+    background: linear-gradient(180deg, #f7e6d4 0%, #f7efe2 100%);
+  }
+
+  .priority-reminder .reminder-content {
+    overflow: hidden;
+  }
+
+  .priority-reminder .reminder-content h2::before {
+    content: "⚠️ ";
+  }
+
+  .priority-reminder .reminder-content h2 {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .priority-reminder .reminder-alert-icon {
+    display: none;
+  }
+
+  .priority-reminder .reminder-close {
+    display: inline-flex;
+    width: 18px;
+    min-height: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .priority-reminder {
+    flex-basis: 120px;
+    max-width: 120px;
+    padding: 5px 8px;
+  }
+}

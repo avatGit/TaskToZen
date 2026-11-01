@@ -1,0 +1,48 @@
+.task-header {
+  height: clamp(50px, 8vh, 70px);
+  padding: 0 clamp(0.5rem, 2.5vw, 1.5rem);
+  border-bottom: 1px solid #3c2819;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-icon {
+  margin-right: 8px;
+  border: none;
+  padding: 0;
+  color: #3f3e3e;
+}
+
+.search-container input {
+  border: none;
+  padding: 0;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  background: transparent;
+}
+.search-clear-btn {
+  background: none;
+  display: flex;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}

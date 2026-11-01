@@ -180,7 +180,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #e8dac0, #b9a28a);
+  background: linear-gradient(to bottom, #f8f5ee, #e9dec6);
   overflow: hidden;
 }
 
