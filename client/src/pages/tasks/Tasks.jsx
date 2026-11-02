@@ -68,7 +68,7 @@ const INITIAL_TASKS = [
     id: "task-4",
     title: "Préparer la revue avec le client",
     description: "Préparer les slides et les points d'aborder.",
-    priority: "medium",
+    priority: "high",
     status: "En cours",
     duration: "45 min",
     dueDate: "14 Juin",
@@ -146,6 +146,12 @@ export default function Tasks() {
     );
   }, []);
 
+  const highPriorityTasks = tasks.filter((t) => t.priority === "high");
+  const suggestedTask =
+    highPriorityTasks.length > 0
+      ? highPriorityTasks[Math.floor(Math.random() * highPriorityTasks.length)]
+      : null;
+
   const handleNewTask = () => {
     setIsCreating(true);
     setSelectedTask(null);
@@ -172,7 +178,13 @@ export default function Tasks() {
       <div className="task-upper-body">
         <FilterBar onNewTask={handleNewTask} />
         <PriorityReminder />
-        <DailySuggestion />
+        <DailySuggestion
+          suggestedTask={suggestedTask}
+          onViewTask={(task) => {
+            setSelectedTask(task);
+            setIsCreating(false);
+          }}
+        />
       </div>
       <section
         className={`task-main-body${

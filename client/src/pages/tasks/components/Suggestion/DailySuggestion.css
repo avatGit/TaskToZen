@@ -10,6 +10,18 @@
   border: 1px solid rgba(60, 40, 25, 0.12);
   grid-column: 1;
   margin-top: 0;
+  animation: suggestionFadeIn 0.4s ease-out;
+}
+
+@keyframes suggestionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .suggestion-left {
@@ -53,7 +65,10 @@
   line-height: 1.4;
 }
 
-.btn-pourquoi {
+.btn-voir-tache {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: none;
   padding: 7px 13px;
   border-radius: 7px;
@@ -65,11 +80,16 @@
     transform 0.2s ease,
     background-color 0.2s ease;
   white-space: nowrap;
+  animation: suggestionFadeIn 0.4s ease-out 0.2s both;
 }
 
-.btn-pourquoi:hover {
+.btn-voir-tache:hover {
   transform: translateY(-1px);
   background: #5f4b30;
+}
+
+.btn-voir-tache svg {
+  flex: 0 0 auto;
 }
 
 @media (max-width: 1024px) {
@@ -80,7 +100,7 @@
     justify-content: space-between;
   }
 
-  .btn-pourquoi {
+  .btn-voir-tache {
     width: 100%;
     margin-top: 12px;
   }
