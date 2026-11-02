@@ -15,6 +15,7 @@ import {
   Tags,
   Trash2,
   X,
+  Users,
 } from "lucide-react";
 import "./TaskDetailsPanel.css";
 
@@ -56,6 +57,7 @@ function createInitialTask(task) {
     tag: sourceTask.tag || sourceTask.category || "Travail",
     tags: sourceTask.tags || (sourceTask.category ? [sourceTask.category] : []),
     notes: sourceTask.notes || "",
+    collaborators: sourceTask.collaborators || [],
     subtasks: sourceTask.subtasks || [
       {
         id: `${sourceTask.id || "task"}-subtask`,
@@ -93,6 +95,7 @@ export default function TaskDetailsPanel({
     label: "Moyenne",
     tag: "Travail",
     tags: [],
+    collaborators: [],
     notes: "",
     subtasks: [],
   });
@@ -111,6 +114,7 @@ export default function TaskDetailsPanel({
   const [showBalanceDialog, setShowBalanceDialog] = useState(false);
   const [showDueDateSelector, setShowDueDateSelector] = useState(false);
   const [showActionMenu, setShowActionMenu] = useState(false);
+  const [newCollaboratorEmail, setNewCollaboratorEmail] = useState("");
   const toastTimer = useRef(null);
   const hasChanges = !sameTask(initialTask, currentTask);
 
@@ -264,6 +268,22 @@ export default function TaskDetailsPanel({
   const handleBalanceNo = () => {
     setShowBalanceDialog(false);
     showToast("Action annulée");
+  };
+
+  const addCollaborator = () => {
+    const email = newCollaboratorEmail.trim();
+    if (!email || currentTask.collaborators.includes(email)) {
+      return;
+    }
+    updateTask("collaborators", [...currentTask.collaborators, email]);
+    setNewCollaboratorEmail("");
+  };
+
+  const removeCollaborator = (email) => {
+    updateTask(
+      "collaborators",
+      currentTask.collaborators.filter((e) => e !== email),
+    );
   };
 
   const setDueDate = (dateValue) => {
@@ -495,6 +515,49 @@ export default function TaskDetailsPanel({
               placeholder="Séparer par des virgules"
               aria-label="Tags"
             />
+          </label>
+
+          <label className={`task-details-property ${fieldClassName("collaborators")}`}>
+            <span className="task-details-property-label">
+              <Users size={17} aria-hidden="true" />
+              Collaborateurs
+            </span>
+            <div className="task-details-collaborators">
+              {currentTask.collaborators.map((email) => (
+                <span key={email} className="task-details-collaborator-chip">
+                  {email}
+                  <button
+                    type="button"
+                    className="task-details-icon-button"
+                    onClick={() => removeCollaborator(email)}
+                    aria-label={`Supprimer ${email}`}
+                  >
+                    <X size={14} aria-hidden="true" />
+                  </button>
+                </span>
+              ))}
+              <input
+                className="task-details-input"
+                value={newCollaboratorEmail}
+                onChange={(event) => setNewCollaboratorEmail(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    addCollaborator();
+                  }
+                }}
+                placeholder="exemple@email.com"
+                aria-label="Ajouter un collaborateur"
+              />
+              <button
+                type="button"
+                className="task-details-icon-button"
+                onClick={addCollaborator}
+                aria-label="Ajouter le collaborateur"
+              >
+                <Plus size={16} aria-hidden="true" />
+              </button>
+            </div>
           </label>
         </div>
 

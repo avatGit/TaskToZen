@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Archive,
-  Clock,
-  Flame,
-  Trash2,
-  Users,
-  Copy,
-} from "lucide-react";
+import { Archive, Clock, Flame, Trash2, Users, Copy } from "lucide-react";
 import "./FocusView.css";
 
 export default function FocusView({
@@ -100,7 +93,7 @@ export default function FocusView({
                             className="focus-task-avatar"
                             aria-label={`Collaborateur ${collaborator}`}
                           >
-                            {collaborator}
+                            {collaborator.slice(0, 2)}
                           </span>
                         ))}
                         {additionalCollaborators > 0 && (

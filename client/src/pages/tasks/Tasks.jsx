@@ -27,8 +27,13 @@ const INITIAL_TASKS = [
     tag: "Travail",
     tags: ["Travail", "Urgente"],
     notes: "",
+    collaborators: ["moussa@gmail.com", "ben90@gmail.com"],
     subtasks: [
-      { id: "sub-1", title: "Finaliser le rapport de projet", completed: false },
+      {
+        id: "sub-1",
+        title: "Finaliser le rapport de projet",
+        completed: false,
+      },
     ],
   },
   {
@@ -96,20 +101,23 @@ export default function Tasks() {
     setTasks((prev) => [...prev, newTask]);
   }, []);
 
-  const deleteTask = useCallback((taskId) => {
-    const task = tasks.find((t) => t.id === taskId);
-    setTasks((prev) => prev.filter((t) => t.id !== taskId));
-    showToast(
-      "Tâche supprimée",
-      () => {
-        if (task) {
-          setTasks((prev) => [...prev, task]);
-        }
-        showToast("Suppression annulée");
-      },
-      5000,
-    );
-  }, [tasks, showToast]);
+  const deleteTask = useCallback(
+    (taskId) => {
+      const task = tasks.find((t) => t.id === taskId);
+      setTasks((prev) => prev.filter((t) => t.id !== taskId));
+      showToast(
+        "Tâche supprimée",
+        () => {
+          if (task) {
+            setTasks((prev) => [...prev, task]);
+          }
+          showToast("Suppression annulée");
+        },
+        5000,
+      );
+    },
+    [tasks, showToast],
+  );
 
   const duplicateTask = useCallback((taskId) => {
     setTasks((prev) => {
@@ -124,10 +132,13 @@ export default function Tasks() {
     });
   }, []);
 
-  const archiveTask = useCallback((taskId) => {
-    setTasks((prev) => prev.filter((t) => t.id !== taskId));
-    showToast("Tâche archivée");
-  }, [showToast]);
+  const archiveTask = useCallback(
+    (taskId) => {
+      setTasks((prev) => prev.filter((t) => t.id !== taskId));
+      showToast("Tâche archivée");
+    },
+    [showToast],
+  );
 
   const updateTask = useCallback((updatedTask) => {
     setTasks((prev) =>
