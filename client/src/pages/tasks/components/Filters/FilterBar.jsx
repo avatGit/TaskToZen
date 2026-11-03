@@ -1,10 +1,34 @@
 import "./FilterBar.css";
 import FilterDropdown from "./FilterDropdown";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
-export default function FilterBar({ onNewTask }) {
+const PRIORITY_MAP = {
+  Haute: "high",
+  Moyenne: "medium",
+  Basse: "low",
+};
+
+const STATUS_MAP = {
+  "A Faire": "À faire",
+  "En cours": "En cours",
+  Terminee: "Terminée",
+};
+
+export default function FilterBar({ onNewTask, onFiltersChange }) {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    priority: [],
+    status: [],
+    label: [],
+    duration: [],
+  });
+
+  const handleFilterChange = useCallback((category, values) => {
+    setFilters((prev) => ({ ...prev, [category]: values }));
+    onFiltersChange?.({ ...filters, [category]: values });
+  }, [filters, onFiltersChange]);
+
   return (
     <div className="filter-bar">
       <div className="filter-bar-left">
@@ -12,18 +36,36 @@ export default function FilterBar({ onNewTask }) {
           <FilterDropdown
             label="Priorite"
             options={["Haute", "Moyenne", "Basse"]}
+            selected={Object.entries(PRIORITY_MAP)
+              .filter(([, val]) => filters.priority.includes(val))
+              .map(([key]) => key)}
+            onChange={(values) => {
+              const normalized = values.map((v) => PRIORITY_MAP[v]).filter(Boolean);
+              handleFilterChange("priority", normalized);
+            }}
           />
           <FilterDropdown
             label="Status"
             options={["A Faire", "En cours", "Terminée"]}
+            selected={Object.entries(STATUS_MAP)
+              .filter(([, val]) => filters.status.includes(val))
+              .map(([key]) => key)}
+            onChange={(values) => {
+              const normalized = values.map((v) => STATUS_MAP[v]).filter(Boolean);
+              handleFilterChange("status", normalized);
+            }}
           />
           <FilterDropdown
             label="Etiquettes"
             options={["Travail", "Apprentissage", "Personnel"]}
+            selected={filters.label}
+            onChange={(values) => handleFilterChange("label", values)}
           />
           <FilterDropdown
             label="Durée"
             options={["< 30min", "30min - 1h", "1h - 2h", "> 2h"]}
+            selected={filters.duration}
+            onChange={(values) => handleFilterChange("duration", values)}
           />
         </div>
         <div className="filter-bar-left-mobile">
@@ -33,100 +75,85 @@ export default function FilterBar({ onNewTask }) {
           {isMobileFilterOpen && (
             <div className="filter-mobile-options">
               <h4>Priorite</h4>
-
               <div className="filtre-items">
-                <input
-                  type="checkbox"
-                  id="priorite-haute"
-                  class="filtre-input"
-                />
-                <label htmlFor="priorite-haute" class="filtre-label">
-                  Haute
-                </label>
-
-                <input
-                  type="checkbox"
-                  id="priorite-moyen"
-                  class="filtre-input"
-                />
-                <label htmlFor="priorite-moyen" class="filtre-label">
-                  Moyenne
-                </label>
-
-                <input
-                  type="checkbox"
-                  id="priorite-basse"
-                  class="filtre-input"
-                />
-                <label htmlFor="priorite-basse" class="filtre-label">
-                  Basse
-                </label>
+                {["Haute", "Moyenne", "Basse"].map((label) => (
+                  <label key={label} className="filtre-label">
+                    <input
+                      type="checkbox"
+                      class="filtre-input"
+                      checked={filters.priority.includes(PRIORITY_MAP[label])}
+                      onChange={() => {
+                        const val = PRIORITY_MAP[label];
+                        const next = filters.priority.includes(val)
+                          ? filters.priority.filter((v) => v !== val)
+                          : [...filters.priority, val];
+                        handleFilterChange("priority", next);
+                      }}
+                    />
+                    {label}
+                  </label>
+                ))}
               </div>
 
               <h4>Status</h4>
-
               <div className="filtre-items">
-                <input type="checkbox" id="status-faire" class="filtre-input" />
-                <label htmlFor="status-faire" class="filtre-label">
-                  A Faire
-                </label>
-
-                <input type="checkbox" id="status-cours" class="filtre-input" />
-                <label htmlFor="status-cours" class="filtre-label">
-                  En Cours
-                </label>
-
-                <input
-                  type="checkbox"
-                  id="status-terminee"
-                  class="filtre-input"
-                />
-                <label htmlFor="status-terminee" class="filtre-label">
-                  Terminee
-                </label>
+                {["A Faire", "En cours", "Terminee"].map((label) => (
+                  <label key={label} className="filtre-label">
+                    <input
+                      type="checkbox"
+                      class="filtre-input"
+                      checked={filters.status.includes(STATUS_MAP[label])}
+                      onChange={() => {
+                        const val = STATUS_MAP[label];
+                        const next = filters.status.includes(val)
+                          ? filters.status.filter((v) => v !== val)
+                          : [...filters.status, val];
+                        handleFilterChange("status", next);
+                      }}
+                    />
+                    {label === "Terminee" ? "Terminée" : label}
+                  </label>
+                ))}
               </div>
 
               <h4>Etiquettes</h4>
-
               <div className="filtre-items">
-                <input type="checkbox" id="travail" class="filtre-input" />
-                <label htmlFor="travail" class="filtre-label">
-                  Travail
-                </label>
-
-                <input type="checkbox" id="learn" class="filtre-input" />
-                <label htmlFor="learn" class="filtre-label">
-                  Apprentissage
-                </label>
-
-                <input type="checkbox" id="personnel" class="filtre-input" />
-                <label htmlFor="personnel" class="filtre-label">
-                  Personnel
-                </label>
+                {["Travail", "Apprentissage", "Personnel"].map((label) => (
+                  <label key={label} className="filtre-label">
+                    <input
+                      type="checkbox"
+                      class="filtre-input"
+                      checked={filters.label.includes(label)}
+                      onChange={() => {
+                        const next = filters.label.includes(label)
+                          ? filters.label.filter((v) => v !== label)
+                          : [...filters.label, label];
+                        handleFilterChange("label", next);
+                      }}
+                    />
+                    {label}
+                  </label>
+                ))}
               </div>
 
               <h4>Duree</h4>
-
               <div className="filtre-items">
-                <input type="checkbox" id="30min" class="filtre-input" />
-                <label htmlFor="30min" class="filtre-label">
-                  &lt; 30min
-                </label>
-
-                <input type="checkbox" id="1h" class="filtre-input" />
-                <label htmlFor="1h" class="filtre-label">
-                  30min - 1h
-                </label>
-
-                <input type="checkbox" id="2h" class="filtre-input" />
-                <label htmlFor="2h" class="filtre-label">
-                  1h - 2h
-                </label>
-
-                <input type="checkbox" id="plus2h" class="filtre-input" />
-                <label htmlFor="plus2h" class="filtre-label">
-                  &gt; 2h
-                </label>
+                {["< 30min", "30min - 1h", "1h - 2h", "> 2h"].map((label) => (
+                  <label key={label} className="filtre-label">
+                    <input
+                      type="checkbox"
+                      class="filtre-input"
+                      checked={filters.duration.includes(label)}
+                      onChange={() => {
+                        const next = filters.duration.includes(label)
+                          ? filters.duration.filter((v) => v !== label)
+                          : [...filters.duration, label];
+                        handleFilterChange("duration", next);
+                      }}
+                    />
+                    {label}
+                  </label>
+                ))}
               </div>
 
               <button onClick={() => setIsMobileFilterOpen(false)}>OK</button>

@@ -12,8 +12,6 @@ import SearchBar from "./components/Header/SearchBar";
 import "./Tasks.css";
 import { Filter } from "lucide-react";
 
-const TESTITEMS = ["java", "Javascript", "Python", "React", "Flutter"];
-
 const INITIAL_TASKS = [
   {
     id: "task-1",
@@ -86,6 +84,12 @@ export default function Tasks() {
   const [isCreating, setIsCreating] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [tasks, setTasks] = useState(INITIAL_TASKS);
+  const [filters, setFilters] = useState({
+    priority: [],
+    status: [],
+    label: [],
+    duration: [],
+  });
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
 
@@ -162,9 +166,43 @@ export default function Tasks() {
     setIsCreating(false);
   };
 
-  const filteredItems = TESTITEMS.filter((item) =>
-    item.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  const handleFiltersChange = useCallback((nextFilters) => {
+    setFilters(nextFilters);
+  }, []);
+
+  const filteredTasks = tasks.filter((task) => {
+    const query = searchQuery.toLowerCase().trim();
+
+    const matchesSearch =
+      !query ||
+      task.title.toLowerCase().includes(query) ||
+      (task.collaborators?.some((email) =>
+        email.toLowerCase().includes(query),
+      ) ??
+        false);
+
+    const matchesPriority =
+      filters.priority.length === 0 || filters.priority.includes(task.priority);
+
+    const matchesStatus =
+      filters.status.length === 0 || filters.status.includes(task.status);
+
+    const matchesLabel =
+      filters.label.length === 0 ||
+      filters.label.includes(task.label) ||
+      filters.label.includes(task.tag);
+
+    const matchesDuration =
+      filters.duration.length === 0 || filters.duration.includes(task.duration);
+
+    return (
+      matchesSearch &&
+      matchesPriority &&
+      matchesStatus &&
+      matchesLabel &&
+      matchesDuration
+    );
+  });
 
   return (
     <div className="tasks-page">
@@ -176,7 +214,10 @@ export default function Tasks() {
       />
 
       <div className="task-upper-body">
-        <FilterBar onNewTask={handleNewTask} />
+        <FilterBar
+          onNewTask={handleNewTask}
+          onFiltersChange={handleFiltersChange}
+        />
         <PriorityReminder />
         <DailySuggestion
           suggestedTask={suggestedTask}
@@ -191,51 +232,37 @@ export default function Tasks() {
           selectedTask || isCreating ? " has-selected-task" : ""
         }`}
       >
-        {searchQuery ? (
-          <ul style={{ marginTop: "20px", paddingLeft: "20px" }}>
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item, index) => (
-                <li key={index} style={{ padding: "6px 0", fontSize: "16px" }}>
-                  {item}
-                </li>
-              ))
-            ) : (
-              <p style={{ color: "#777" }}>No results found.</p>
-            )}
-          </ul>
-        ) : (
-          <div className="task-content">
-            {currentMode === "focus" && (
-              <FocusView
-                tasks={tasks}
-                onSelectTask={setSelectedTask}
-                onDeleteTask={deleteTask}
-                onDuplicateTask={duplicateTask}
-                onArchiveTask={archiveTask}
-                onUpdateTask={updateTask}
-              />
-            )}
-            {currentMode === "flow" && (
-              <FlowView
-                tasks={tasks}
-                onSelectTask={setSelectedTask}
-                onDeleteTask={deleteTask}
-                onDuplicateTask={duplicateTask}
-                onUpdateTask={updateTask}
-              />
-            )}
-            {currentMode === "list" && (
-              <ListView
-                tasks={tasks}
-                onSelectTask={setSelectedTask}
-                onDeleteTask={deleteTask}
-                onDuplicateTask={duplicateTask}
-                onUpdateTask={updateTask}
-              />
-            )}
-            {currentMode !== "flow" && <DayOverview />}
-          </div>
-        )}
+        <div className="task-content">
+          {currentMode === "focus" && (
+            <FocusView
+              tasks={filteredTasks}
+              onSelectTask={setSelectedTask}
+              onDeleteTask={deleteTask}
+              onDuplicateTask={duplicateTask}
+              onArchiveTask={archiveTask}
+              onUpdateTask={updateTask}
+            />
+          )}
+          {currentMode === "flow" && (
+            <FlowView
+              tasks={filteredTasks}
+              onSelectTask={setSelectedTask}
+              onDeleteTask={deleteTask}
+              onDuplicateTask={duplicateTask}
+              onUpdateTask={updateTask}
+            />
+          )}
+          {currentMode === "list" && (
+            <ListView
+              tasks={filteredTasks}
+              onSelectTask={setSelectedTask}
+              onDeleteTask={deleteTask}
+              onDuplicateTask={duplicateTask}
+              onUpdateTask={updateTask}
+            />
+          )}
+          {currentMode !== "flow" && <DayOverview />}
+        </div>
 
         {(selectedTask || isCreating) && (
           <TaskDetailsPanel
